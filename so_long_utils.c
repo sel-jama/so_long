@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/03/28 01:05:55 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/04/01 01:07:05 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 
 void    ft_error_exit(char *msg)
 {
-    ft_putendl_fd(msg, 2);
+    ft_putstr_fd(msg, 2);
     exit(1);
 }
+
+// void    ft_free(char **arr)
+// {
+//     int i;
+
+//     i = 0;
+//     while (arr[i])
+//     {
+//         free(arr[i]);
+//         i++;
+//     }
+//     free(arr);
+// }

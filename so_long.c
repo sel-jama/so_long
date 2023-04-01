@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 22:17:38 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/03/28 01:40:48 by sel-jama         ###   ########.fr       */
+/*   Created: 2023/04/01 02:22:11 by sel-jama          #+#    #+#             */
+/*   Updated: 2023/04/01 02:22:27 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,9 @@
 
 int main(int ac, char **av)
 {
-    // check_mapfile_name(av[1]);
-    // if(!map_is_valid(av))
-    //     ft_exit_error("map is invalid");
-    char **map;
-    map = ft_get_map(av[1]);
-    int i = 0;
-    while (map[i])
-    {
-        int j = 0;
-        while (map[i][j])
-        {
-            printf("%c", map[i][j]);
-            j++;
-        }
-        printf("\n");
-        i++;
-    }
-            
-    
-}
+    so_long var;
+    check_mapfile_name(&av[1]);
+    var.map = ft_get_map(av[1]);
+    if (!map_is_valid(var.map))
+        ft_error_exit("map is invalid");
+}   
