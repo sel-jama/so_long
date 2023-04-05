@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/01 02:35:53 by sel-jama         ###   ########.fr       */
+/*   Created: 2022/10/14 13:27:01 by sel-jama          #+#    #+#             */
+/*   Updated: 2022/11/01 00:44:17 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-void    ft_error_exit(char *msg)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-    ft_putstr_fd(msg, 2);
-    exit(1);
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	str = (char *)haystack;
+	if (needle[j] == '\0')
+		return (str);
+	while (str[i] && len >= ft_strlen(needle))
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j])
+		{
+			if (needle[j + 1] == '\0')
+				return (&str[i]);
+			j++;
+		}
+		i++;
+		len--;
+	}
+	return (NULL);
 }
-
-// void    ft_free(char **arr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (arr[i])
-//     {
-//         free(arr[i]);
-//         i++;
-//     }
-//     free(arr);
-// }

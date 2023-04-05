@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/01 02:35:53 by sel-jama         ###   ########.fr       */
+/*   Created: 2022/10/07 10:20:03 by sel-jama          #+#    #+#             */
+/*   Updated: 2022/10/18 23:17:23 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-void    ft_error_exit(char *msg)
+int	ft_isascii(int c)
 {
-    ft_putstr_fd(msg, 2);
-    exit(1);
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
 }
-
-// void    ft_free(char **arr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (arr[i])
-//     {
-//         free(arr[i]);
-//         i++;
-//     }
-//     free(arr);
-// }

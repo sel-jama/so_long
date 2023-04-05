@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/01 02:35:53 by sel-jama         ###   ########.fr       */
+/*   Created: 2022/10/24 12:08:50 by sel-jama          #+#    #+#             */
+/*   Updated: 2022/11/01 04:33:15 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-void    ft_error_exit(char *msg)
+t_list	*ft_lstlast(t_list *lst)
 {
-    ft_putstr_fd(msg, 2);
-    exit(1);
+	t_list	*last;
+
+	last = lst;
+	if (last)
+		while (last->next != NULL)
+			last = last->next;
+	return (last);
 }
-
-// void    ft_free(char **arr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (arr[i])
-//     {
-//         free(arr[i]);
-//         i++;
-//     }
-//     free(arr);
-// }

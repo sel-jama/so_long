@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chercker_map.c                                     :+:      :+:    :+:   */
+/*   checker_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:08:38 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/01 01:59:05 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/04/05 05:04:13 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "libft/libft.h"
-#include "get_next_line/get_next_line.h"
 
 int check_mapfile_name(char **av)
 {
@@ -25,9 +23,9 @@ int check_mapfile_name(char **av)
     {
         if (ft_strncmp(file_name, ".ber", 4) == 0)
         {
+            printf("what");
             found = 1;
             file_name += 4;
-            printf("%s\n", file_name);
             break ;
         }
         file_name++;
@@ -73,7 +71,7 @@ int is_map_rectangle(char **map, int rows, int cols)
     i = 0;
     while(i < rows)
     {
-        if (ft_strlen(map[i]) - 1 != cols) 
+        if (ft_strlen(map[i]) - 1 != (size_t)cols) 
             return (0);
         i++;
     }
@@ -156,18 +154,8 @@ int map_contains_one_exit(char **map)
     return (0); 
 }
 
-int map_is_valid(char **map)
+int map_is_valid(char **map, int rows, int cols)
 {
-    int rows;
-    int cols;
-    int i;
-
-    i = 0;
-    while (map[i])
-        i++;
-    //-1 for the '/n' char in the map
-    cols = ft_strlen(map[0]) - 1;
-    rows = i;
     if (!is_map_rectangle(map, rows, cols))
         return (0);
     if (!is_map_surrounded_by_walls(map, rows, cols))

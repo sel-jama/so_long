@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/01 02:35:53 by sel-jama         ###   ########.fr       */
+/*   Created: 2022/10/09 16:40:38 by sel-jama          #+#    #+#             */
+/*   Updated: 2022/11/01 05:41:21 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-void    ft_error_exit(char *msg)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-    ft_putstr_fd(msg, 2);
-    exit(1);
+	size_t	i;
+
+	if (!dst && !src)
+		return (NULL);
+	if ((char *)dst > (char *)src && len != 0)
+	{
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			*(char *)(dst + i) = *(char *)(src + i);
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < len)
+		{
+			*(char *)(dst + i) = *(char *)(src + i);
+			i++;
+		}
+	}
+	return (dst);
 }
-
-// void    ft_free(char **arr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (arr[i])
-//     {
-//         free(arr[i]);
-//         i++;
-//     }
-//     free(arr);
-// }

@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/01 02:35:53 by sel-jama         ###   ########.fr       */
+/*   Created: 2022/10/08 23:17:37 by sel-jama          #+#    #+#             */
+/*   Updated: 2022/11/01 05:41:31 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-void    ft_error_exit(char *msg)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    ft_putstr_fd(msg, 2);
-    exit(1);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (*(unsigned char *)(s + i) == (unsigned char)c)
+			return ((void *)(s + i));
+		i++;
+	}
+	return (NULL);
 }
-
-// void    ft_free(char **arr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (arr[i])
-//     {
-//         free(arr[i]);
-//         i++;
-//     }
-//     free(arr);
-// }

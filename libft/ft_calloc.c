@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/01 02:35:53 by sel-jama         ###   ########.fr       */
+/*   Created: 2022/10/18 23:43:46 by sel-jama          #+#    #+#             */
+/*   Updated: 2022/11/01 03:26:35 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "libft/libft.h"
+#include "libft.h"
 
-void    ft_error_exit(char *msg)
+void	*ft_calloc(size_t count, size_t size)
 {
-    ft_putstr_fd(msg, 2);
-    exit(1);
+	char	*p;
+	size_t	i;
+
+	if (size && count >= SIZE_MAX / size)
+		return (NULL);
+	p = malloc(count * size);
+	if (!p)
+		return (NULL);
+	i = 0;
+	while (i < count * size)
+	{
+		p[i] = '\0';
+		i++;
+	}
+	return (p);
 }
-
-// void    ft_free(char **arr)
-// {
-//     int i;
-
-//     i = 0;
-//     while (arr[i])
-//     {
-//         free(arr[i]);
-//         i++;
-//     }
-//     free(arr);
-// }
