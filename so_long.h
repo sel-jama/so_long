@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 22:34:43 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/05 05:59:03 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/04/08 07:35:26 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <mlx.h>
 typedef struct s_so_long
 {
-    char **map;
+    char    **map;
+    int     cols;
+    int     rows;
 }so_long;
 
 int     check_mapfile_name(char **av);
@@ -29,8 +31,7 @@ int     is_map_well_composed(char **map, int rows, int cols);
 int     is_map_surrounded_by_walls(char **map, int rows, int cols);
 int     is_map_rectangle(char **map, int rows, int cols);
 void    ft_error_exit(char *msg);
-void    ft_broadcast_game(int col, int row);
+void    ft_broadcast_game(so_long *game, int col, int row);
 int     ft_key_hook(int keycode);
-int     ft_mouse_hook(int button, int x, int y);
 
 #endif

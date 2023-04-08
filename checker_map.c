@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:08:38 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/05 05:04:13 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/04/06 02:54:22 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int check_mapfile_name(char **av)
     char    *file_name;
 
     file_name = *av;
-    while (file_name)
+    while (ft_strlen(file_name) >= 4)
     {
         if (ft_strncmp(file_name, ".ber", 4) == 0)
         {
