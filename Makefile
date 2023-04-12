@@ -6,11 +6,11 @@
 #    By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/01 02:02:58 by sel-jama          #+#    #+#              #
-#    Updated: 2023/04/05 05:10:04 by sel-jama         ###   ########.fr        #
+#    Updated: 2023/04/11 08:43:51 by sel-jama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = so_long.c checker_map.c so_long_utils.c display_game.c\
+SRCS = so_long.c checker_map.c so_long_utils.c display_game.c move_player.c\
 	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 OBJS = ${SRCS:.c=.o}
