@@ -6,140 +6,132 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:17:35 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/11 11:28:47 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:54:34 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_up(so_long **game)
+void	ft_collect(char *c, t_game **s)
 {
-	int		width;
-	int		height;
-    void    *img = NULL;
+	void	*img;
+	int		w;
+	int		h;
 
-    if ((*game)->map[((*game)->y_coor / 64) - 1][((*game)->x_coor / 64)] == '1')
-        return ;
-	if ((*game)->map[((*game)->y_coor / 64) - 1][((*game)->x_coor / 64)] == 'E')
-	{
-		if ((*game)->diamonds <= 0)
-			escape_door(game);
-        else
-            return ;
-	}
-	else if ((*game)->map[((*game)->y_coor / 64) - 1][((*game)->x_coor / 64)] != '1')
-	{
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-		(*game)->y_coor -= 64;
-		// put_text(&game);
-	}
-	if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] == 'C')
-	{
-		(*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] = '0';
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-        (*game)->diamonds--;
-    }
-	img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/player_up.xpm", &width, &height);
-	mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
+	*c = '0';
+	img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/way.xpm", &w, &h);
+	mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
+	(*s)->diamonds--;
 }
 
-void	move_down(so_long **game)
+void	move_up(t_game **s)
 {
-	int		width;
-	int		height;
-    void    *img = NULL;
+	int		w;
+	int		h;
+	void	*img;
 
-    if ((*game)->map[((*game)->y_coor / 64) + 1][((*game)->x_coor / 64)] == '1')
-        return ;
-	if ((*game)->map[((*game)->y_coor / 64) + 1][((*game)->x_coor / 64)] == 'E')
+	if ((*s)->map[((*s)->y / 64) - 1][((*s)->x / 64)] == '1')
+		return ;
+	if ((*s)->map[((*s)->y / 64) - 1][((*s)->x / 64)] == 'E')
 	{
-		if ((*game)->diamonds <= 0)
-			escape_door(game);
-        else
-            return ;
+		if ((*s)->diamonds <= 0)
+			escape_door(s);
+		else
+			return ;
 	}
-	else if ((*game)->map[((*game)->y_coor / 64) + 1][((*game)->x_coor / 64)] != '1')
+	else if ((*s)->map[((*s)->y / 64) - 1][((*s)->x / 64)] != '1')
 	{
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-		(*game)->y_coor += 64;
-		// put_text(&game);
+		display_score(s);
+		img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/way.xpm", &w, &h);
+		mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
+		(*s)->y -= 64;
 	}
-	if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] == 'C')
-	{
-		(*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] = '0';
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-        (*game)->diamonds--;
-    }
-	img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/player_down.xpm", &width, &height);
-	mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64)] == 'C')
+		ft_collect(&((*s)->map[((*s)->y / 64)][((*s)->x / 64)]), s);
+	img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/p_up.xpm", &w, &h);
+	mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
 }
 
-void	move_left(so_long **game)
+void	move_down(t_game **s)
 {
-	int		width;
-	int		height;
-    void    *img = NULL;
+	int		w;
+	int		h;
+	void	*img;
 
-    if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64) - 1] == '1')
-        return ;
-	if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64) - 1] == 'E')
+	if ((*s)->map[((*s)->y / 64) + 1][((*s)->x / 64)] == '1')
+		return ;
+	if ((*s)->map[((*s)->y / 64) + 1][((*s)->x / 64)] == 'E')
 	{
-		if ((*game)->diamonds <= 0)
-			escape_door(game);
-        else
-            return ;
+		if ((*s)->diamonds <= 0)
+			escape_door(s);
+		else
+			return ;
 	}
-	else if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64) - 1] != '1')
+	else if ((*s)->map[((*s)->y / 64) + 1][((*s)->x / 64)] != '1')
 	{
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-		(*game)->x_coor -= 64;
-		// put_text(&game);
+		img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/way.xpm", &w, &h);
+		mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
+		(*s)->y += 64;
+		display_score(s);
 	}
-	if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] == 'C')
-	{
-		(*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] = '0';
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-        (*game)->diamonds--;
-    }
-	img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/player_left.xpm", &width, &height);
-	mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64)] == 'C')
+		ft_collect(&((*s)->map[((*s)->y / 64)][((*s)->x / 64)]), s);
+	img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/p_down.xpm", &w, &h);
+	mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
 }
 
-void	move_right(so_long **game)
+void	move_left(t_game **s)
 {
-	int		width;
-	int		height;
-    void    *img;
-    
-    if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64) + 1] == '1')
-        return ;
-	if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64) + 1] == 'E')
+	int		w;
+	int		h;
+	void	*img;
+
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64) - 1] == '1')
+		return ;
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64) - 1] == 'E')
 	{
-		if ((*game)->diamonds <= 0)
-			escape_door(game);
-        else
-            return ;
+		if ((*s)->diamonds <= 0)
+			escape_door(s);
+		else
+			return ;
 	}
-	else if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64) + 1] != '1')
+	else if ((*s)->map[((*s)->y / 64)][((*s)->x / 64) - 1] != '1')
 	{
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-		(*game)->x_coor += 64;
-		// put_text(&game);
+		img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/way.xpm", &w, &h);
+		mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
+		(*s)->x -= 64;
+		display_score(s);
 	}
-	if ((*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] == 'C')
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64)] == 'C')
+		ft_collect(&((*s)->map[((*s)->y / 64)][((*s)->x / 64)]), s);
+	img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/p_left.xpm", &w, &h);
+	mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
+}
+
+void	move_right(t_game **s)
+{
+	int		w;
+	int		h;
+	void	*img;
+
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64) + 1] == '1')
+		return ;
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64) + 1] == 'E')
 	{
-		(*game)->map[((*game)->y_coor / 64)][((*game)->x_coor / 64)] = '0';
-        img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/way.xpm", &width, &height);
-	    mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
-        (*game)->diamonds--;
-    }
-	img = mlx_xpm_file_to_image((*game)->ptr_mlx, "./sprites/player_right.xpm", &width, &height);
-	mlx_put_image_to_window((*game)->ptr_mlx, (*game)->window, img, (*game)->x_coor, (*game)->y_coor);
+		if ((*s)->diamonds <= 0)
+			escape_door(s);
+		else
+			return ;
+	}
+	else if ((*s)->map[((*s)->y / 64)][((*s)->x / 64) + 1] != '1')
+	{
+		img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/way.xpm", &w, &h);
+		mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
+		(*s)->x += 64;
+		display_score(s);
+	}
+	if ((*s)->map[((*s)->y / 64)][((*s)->x / 64)] == 'C')
+		ft_collect(&((*s)->map[((*s)->y / 64)][((*s)->x / 64)]), s);
+	img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/p_right.xpm", &w, &h);
+	mlx_put_image_to_window((*s)->mlx, (*s)->window, img, (*s)->x, (*s)->y);
 }
