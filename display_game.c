@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 03:12:10 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/12 14:58:33 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:09:32 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_key_hook(int keycode, t_game *game)
 {
-	if (keycode == KEY_UP)
+	if (keycode == KEY_UP || keycode == 13)
 		move_up(&game);
-	else if (keycode == KEY_DOWN)
+	else if (keycode == KEY_DOWN || keycode == 1)
 		move_down(&game);
-	else if (keycode == KEY_LEFT)
+	else if (keycode == KEY_LEFT || keycode == 0)
 		move_left(&game);
-	else if (keycode == KEY_RIGHT)
+	else if (keycode == KEY_RIGHT || keycode == 2)
 		move_right(&game);
 	else if (keycode == 53)
 		exit (0);
@@ -51,11 +51,13 @@ void	parse_game_board(t_game **game)
 	int	x;
 	int	y;
 	int	col;
+	int	row;
 
 	i = 0;
 	y = 0;
 	col = (*game)->cols;
-	while ((*game)->rows > 0)
+	row = (*game)->rows;
+	while (row > 0)
 	{
 		j = 0;
 		x = 0;
@@ -69,7 +71,7 @@ void	parse_game_board(t_game **game)
 		col = (*game)->cols;
 		i++;
 		y += 64;
-		(*game)->rows--;
+		row--;
 	}
 }
 
@@ -95,7 +97,11 @@ void	image_parser(char map_case, int x, int y, t_game **s)
 	if (map_case == 'C')
 		img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/diamond.xpm", &w, &h);
 	if (map_case == 'E')
+	{
+		(*s)->x_e = x;
+		(*s)->y_e = y;
 		img = mlx_xpm_file_to_image((*s)->mlx, "./sprites/door.xpm", &w, &h);
+	}
 	if (!img)
 		return ;
 	mlx_put_image_to_window((*s)->mlx, (*s)->window, img, x, y);

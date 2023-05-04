@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:08:38 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/12 12:58:32 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/04 04:44:15 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_mapfile_name(char **av)
 	if (found && *file_name == '\0')
 		return (0);
 	else
-		ft_error_exit("invalid file name");
+		ft_error_exit("invalid file name", 1);
 	return (0);
 }
 
@@ -47,7 +47,7 @@ char	**ft_get_map(char *av)
 	map_lines = ft_strdup("");
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
-		ft_error_exit("failed to open file");
+		ft_error_exit("failed to open file", 1);
 	map_line = get_next_line(fd);
 	while (map_line != '\0' && *map_line != '\n')
 	{

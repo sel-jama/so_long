@@ -6,24 +6,25 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/12 13:53:28 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/04 05:00:28 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_error_exit(char *msg)
+void	ft_error_exit(char *msg, int n)
 {
+	ft_putendl_fd("Error", 2);
 	ft_putstr_fd(msg, 2);
-	exit(1);
+	exit(n);
 }
 
-void	ft_free_map(char **arr)
+void	ft_free_map(char **arr, int rows)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (i < rows)
 	{
 		free(arr[i]);
 		i++;
@@ -33,7 +34,7 @@ void	ft_free_map(char **arr)
 
 void	escape_door(t_game **game)
 {
-	ft_free_map((*game)->map);
+	ft_free_map((*game)->map, (*game)->rows);
 	mlx_destroy_window((*game)->mlx, (*game)->window);
 	exit(0);
 }
@@ -57,17 +58,24 @@ void	count_collectibles(t_game *game)
 		i++;
 	}
 	if (game->diamonds < 1)
-		ft_error_exit("invalid map");
+		ft_error_exit("invalid map", 1);
 }
 
 void	display_score(t_game **game)
 {
 	char	*s;
+	int		w;
+	int		h;
+	void	*img;
 
-	s = ft_itoa((*game)->score);
 	(*game)->score++;
+	s = ft_itoa((*game)->score);
 	ft_putnbr_fd((*game)->score, 1);
 	ft_putchar_fd('\n', 0);
+	img = mlx_xpm_file_to_image((*game)->mlx, "./sprites/wall.xpm", &w, &h);
+	if (!img)
+		return ;
+	mlx_put_image_to_window((*game)->mlx, (*game)->window, img, 0, 0);
 	mlx_string_put((*game)->mlx, (*game)->window, 20, 10, 0xffffff, s);
 	free(s);
 }
