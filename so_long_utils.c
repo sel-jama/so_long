@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/05/04 05:00:28 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/08 01:07:12 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	display_score(t_game **game)
 	s = ft_itoa((*game)->score);
 	ft_putnbr_fd((*game)->score, 1);
 	ft_putchar_fd('\n', 0);
-	img = mlx_xpm_file_to_image((*game)->mlx, "./sprites/wall.xpm", &w, &h);
+	img = mlx_xpm_file_to_image((*game)->mlx, "./textures/wall.xpm", &w, &h);
 	if (!img)
 		return ;
 	mlx_put_image_to_window((*game)->mlx, (*game)->window, img, 0, 0);

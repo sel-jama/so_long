@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:08:38 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/05/04 04:44:15 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/08 06:11:22 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char	**ft_get_map(char *av)
 	if (fd < 0)
 		ft_error_exit("failed to open file", 1);
 	map_line = get_next_line(fd);
+	if (!map_line)
+		return (NULL);
 	while (map_line != '\0' && *map_line != '\n')
 	{
 		map_lines = ft_strjoin(map_lines, map_line);
@@ -89,7 +91,6 @@ int	is_map_surrounded_by_walls(char **map, int rows, int cols)
 			return (0);
 		j++;
 	}
-	/*check left and right columns*/
 	i = 0;
 	while (i < rows)
 	{

@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:34:59 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/15 10:28:42 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/06 08:13:36 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	join[i] = '\0';
-	free((void*)s1);
+	free((void *)s1);
 	return (join);
 }

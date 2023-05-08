@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 02:36:31 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/05/04 04:41:47 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/08 06:14:21 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int ac, char **av)
 		ft_error_exit("invalid number of arguments", 1);
 	check_mapfile_name(&av[1]);
 	game_param.map = ft_get_map(av[1]);
+	if (!(game_param.map))
+		return (0);
 	ft_init_param(&game_param);
 	while (game_param.map[game_param.rows])
 		game_param.rows++;
