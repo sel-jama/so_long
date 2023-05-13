@@ -6,34 +6,20 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:08:38 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/05/08 06:11:22 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:54:00 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_mapfile_name(char **av)
+char	**ft_new_lined_map(char **map)
 {
-	int		found;
-	char	*file_name;
+	int	i;
 
-	found = 0;
-	file_name = *av;
-	while (ft_strlen(file_name) >= 4)
-	{
-		if (ft_strncmp(file_name, ".ber", 4) == 0)
-		{
-			found = 1;
-			file_name += 4;
-			break ;
-		}
-		file_name++;
-	}
-	if (found && *file_name == '\0')
-		return (0);
-	else
-		ft_error_exit("invalid file name", 1);
-	return (0);
+	i = -1;
+	while (map[++i])
+		map[i] = ft_strjoin(map[i], "\n");
+	return (map);
 }
 
 char	**ft_get_map(char *av)
@@ -42,7 +28,6 @@ char	**ft_get_map(char *av)
 	char	*map_lines;
 	char	**map;
 	int		fd;
-	int		i;
 
 	map_lines = ft_strdup("");
 	fd = open(av, O_RDONLY);
@@ -51,17 +36,18 @@ char	**ft_get_map(char *av)
 	map_line = get_next_line(fd);
 	if (!map_line)
 		return (NULL);
-	while (map_line != '\0' && *map_line != '\n')
+	while (map_line != '\0')
 	{
 		map_lines = ft_strjoin(map_lines, map_line);
 		free(map_line);
 		map_line = get_next_line(fd);
 	}
+	if (map_lines[ft_strlen(map_lines) - 1] == '\n')
+		ft_error_exit("Invalid shap of map", 1);
 	map = ft_split(map_lines, '\n');
-	i = -1;
-	while (map[++i])
-		map[i] = ft_strjoin(map[i], "\n");
+	map = ft_new_lined_map(map);
 	free(map_lines);
+	close(fd);
 	return (map);
 }
 

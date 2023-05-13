@@ -6,12 +6,12 @@
 #    By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/01 02:02:58 by sel-jama          #+#    #+#              #
-#    Updated: 2023/05/08 01:27:33 by sel-jama         ###   ########.fr        #
+#    Updated: 2023/05/13 15:41:34 by sel-jama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = so_long.c checker_map.c so_long_utils.c display_game.c move_player.c check_map_valid.c\
-	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c valid_path.c
+	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c valid_path.c move_player_utils.c
 
 OBJS = ${SRCS:.c=.o}
 	

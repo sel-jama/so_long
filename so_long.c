@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 02:36:31 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/05/08 06:14:21 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/13 14:37:23 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ int	main(int ac, char **av)
 		game_param.rows++;
 	game_param.cols = ft_strlen(game_param.map[0]) - 1;
 	if (!map_is_valid(game_param.map, game_param.rows, game_param.cols))
-		ft_error_exit("invalid map", 1);
+		ft_error_exit("Invalid map", 1);
 	count_collectibles(&game_param);
 	set_player_coor(&game_param);
 	if (!check_path(&game_param))
 		ft_error_exit("No available path in the map", 0);
 	ft_broadcast_game(&game_param, game_param.cols, game_param.rows);
-	ft_free_map(game_param.map, game_param.rows);
-	mlx_destroy_window(game_param.mlx, game_param.window);
 	return (0);
 }

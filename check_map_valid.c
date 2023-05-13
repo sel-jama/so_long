@@ -6,11 +6,27 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:53:05 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/04/12 13:04:45 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:46:54 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	check_mapfile_name(char **av)
+{
+	int		found;
+	char	*file_name;
+
+	found = 0;
+	file_name = ft_strrchr(*av, '.');
+	if (ft_strncmp(file_name, ".ber", 4) == 0)
+		found = 1;
+	if (found)
+		return (0);
+	else
+		ft_error_exit("invalid file name", 1);
+	return (0);
+}
 
 int	map_contains_one_exit_player(char **map)
 {

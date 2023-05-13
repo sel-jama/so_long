@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 22:34:43 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/05/08 01:12:57 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:47:04 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_game
 {
 	char	**map;
 	void	*mlx;
-	void	*window;
+	void	*wi;
 	int		cols;
 	int		rows;
 	int		diamonds;
@@ -63,5 +63,9 @@ int		check_filled_map(char **map, int rows);
 void	fill(char **arr, int x, int y, int rows);
 int		check_remaining_collectibles(char **map, int rows);
 void	set_player_coor(t_game	*param);
+int		check_and_exit_door(t_game **s);
+char	**ft_new_lined_map(char **map);
+void	put_floor(t_game **s);
+void	*put_player(t_game **s, int x, int y);
 
 #endif

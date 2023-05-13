@@ -6,7 +6,7 @@
 /*   By: sel-jama <sel-jama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 01:04:25 by sel-jama          #+#    #+#             */
-/*   Updated: 2023/05/08 01:07:12 by sel-jama         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:49:45 by sel-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_error_exit(char *msg, int n)
 {
 	ft_putendl_fd("Error", 2);
-	ft_putstr_fd(msg, 2);
+	ft_putendl_fd(msg, 2);
 	exit(n);
 }
 
@@ -30,13 +30,6 @@ void	ft_free_map(char **arr, int rows)
 		i++;
 	}
 	free(arr);
-}
-
-void	escape_door(t_game **game)
-{
-	ft_free_map((*game)->map, (*game)->rows);
-	mlx_destroy_window((*game)->mlx, (*game)->window);
-	exit(0);
 }
 
 void	count_collectibles(t_game *game)
@@ -75,7 +68,7 @@ void	display_score(t_game **game)
 	img = mlx_xpm_file_to_image((*game)->mlx, "./textures/wall.xpm", &w, &h);
 	if (!img)
 		return ;
-	mlx_put_image_to_window((*game)->mlx, (*game)->window, img, 0, 0);
-	mlx_string_put((*game)->mlx, (*game)->window, 20, 10, 0xffffff, s);
+	mlx_put_image_to_window((*game)->mlx, (*game)->wi, img, 0, 0);
+	mlx_string_put((*game)->mlx, (*game)->wi, 20, 10, 0xffffff, s);
 	free(s);
 }
